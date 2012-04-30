@@ -1,3 +1,3 @@
 [submodule "Hello2/Hello2/mruby"]
 	path = Hello2/Hello2/mruby
-	url = git://github.com/takeru/cocos2d-mruby.git
+	url = git://github.com/takeru/mruby.git
