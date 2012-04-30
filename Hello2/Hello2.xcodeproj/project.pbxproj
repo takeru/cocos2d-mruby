@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		002C6667154D80C300C2159E /* Hello2.rb in Resources */ = {isa = PBXBuildFile; fileRef = 002C6666154D80C300C2159E /* Hello2.rb */; };
 		002C666B154D82C800C2159E /* Cocos2dMrb.m in Sources */ = {isa = PBXBuildFile; fileRef = 002C666A154D82C800C2159E /* Cocos2dMrb.m */; };
+		002C6678154EBAAA00C2159E /* ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = 002C6677154EBAAA00C2159E /* ruby.png */; };
 		007E769715443A73002DC9A7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007E769615443A73002DC9A7 /* QuartzCore.framework */; };
 		007E769915443A73002DC9A7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007E769815443A73002DC9A7 /* OpenGLES.framework */; };
 		007E769B15443A73002DC9A7 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007E769A15443A73002DC9A7 /* OpenAL.framework */; };
@@ -184,8 +185,9 @@
 
 /* Begin PBXFileReference section */
 		002C6666154D80C300C2159E /* Hello2.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Hello2.rb; sourceTree = "<group>"; };
-		002C6669154D82C800C2159E /* Cocos2dMrb.h */ = {isa = PBXFileReference; fileEncoding = 4; path = Cocos2dMrb.h; sourceTree = "<group>"; };
+		002C6669154D82C800C2159E /* Cocos2dMrb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cocos2dMrb.h; sourceTree = "<group>"; };
 		002C666A154D82C800C2159E /* Cocos2dMrb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cocos2dMrb.m; sourceTree = "<group>"; };
+		002C6677154EBAAA00C2159E /* ruby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ruby.png; path = Resources/ruby.png; sourceTree = "<group>"; };
 		006894B5154D5B31006E32CC /* cdump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cdump.h; path = Hello2/mruby/include/mruby/cdump.h; sourceTree = SOURCE_ROOT; };
 		006894B6154D5B31006E32CC /* dump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = dump.h; path = Hello2/mruby/include/mruby/dump.h; sourceTree = SOURCE_ROOT; };
 		006894B7154D5B31006E32CC /* irep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = irep.h; path = Hello2/mruby/include/mruby/irep.h; sourceTree = SOURCE_ROOT; };
@@ -590,6 +592,7 @@
 		007E76A715443A73002DC9A7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				002C6677154EBAAA00C2159E /* ruby.png */,
 				002C6666154D80C300C2159E /* Hello2.rb */,
 				007E76A815443A73002DC9A7 /* Default.png */,
 				007E76AA15443A73002DC9A7 /* fps_images.png */,
@@ -1119,6 +1122,7 @@
 				007E7A4915443F55002DC9A7 /* string.rb in Resources */,
 				007E7A4A15443F55002DC9A7 /* struct.rb in Resources */,
 				002C6667154D80C300C2159E /* Hello2.rb in Resources */,
+				002C6678154EBAAA00C2159E /* ruby.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

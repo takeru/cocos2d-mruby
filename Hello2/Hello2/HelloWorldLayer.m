@@ -24,13 +24,10 @@
     Cocos2dMrb *mrb = [[Cocos2dMrb alloc] init];
     NSString* path = [[NSBundle mainBundle] pathForResource: @"Hello2" ofType: @"rb"];
     [mrb loadFile:path];
-    
-    
-    // mrb_value l = mrb_funcall(mrb, mrb_top_self(mrb), "createLayer", 0);
-    //CCLayer *layer = 
+    CCLayer *layer = [mrb createLayer]; // tmp
 
 	// add layer as a child to scene
-	// [scene addChild: layer];
+	[scene addChild: layer];
 
 	// return the scene
 	return scene;

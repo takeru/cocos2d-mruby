@@ -1,5 +1,6 @@
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
 
 #include "Cocos2dMrb.h"
 #include "mruby.h"
@@ -11,5 +12,7 @@
 //@property mrb_state* mrb;
 
 -(void) loadFile:(NSString*)file;
+-(void) initClasses;
+-(CCLayer*) createLayer; // tmp
 
 @end
