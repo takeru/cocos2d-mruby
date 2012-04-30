@@ -10,12 +10,10 @@ http://takeru.github.com/cocos2d-mruby/
         super
      
         player = Cocos2d::Sprite.new(:file=>"Icon-Small.png")
-     
         size = Cocos2d.winSize
         size.width  /= 2
         size.height /= 2
         player.position = size
-     
         addChild(player)
      
         player2 = Cocos2d::Sprite.new(:file=>"Icon-72.png")
