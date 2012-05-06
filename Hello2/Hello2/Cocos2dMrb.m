@@ -1,6 +1,7 @@
 
 #import "Cocos2dMrb.h"
 #import "MrbLayer.h"
+#import "MrbSprite.h"
 #include "mruby/proc.h"
 #include "mruby/hash.h"
 #include "mruby/variable.h"
@@ -27,6 +28,9 @@ void nsobject_container_free(mrb_state *mrb, void *p)
     id obj = (NSObject*)p;
     NSUInteger c = [obj retainCount];
     printf("nsobject_container_free p=%x retainCount=%d->%d \n", (unsigned int)p, c, c-1);
+    if([obj respondsToSelector:@selector(released)]){
+        [obj released];
+    }
     [obj release];
 }
 
@@ -74,8 +78,7 @@ mrb_value mCocos2d_winSize(mrb_state *mrb, mrb_value self)
 
 mrb_value cNode_initialize(mrb_state *mrb, mrb_value self)
 {
-    // printf("cNode_initialize\n");
-
+    //printf("cNode_initialize p=%x\n", (unsigned int)self);
     return self;
 }
 
@@ -84,9 +87,9 @@ void cNode__set_CCNode(mrb_state *mrb, mrb_value self, CCNode *ccNode)
     mrb_value node;
     struct RClass *cNSObjectContainer;
 
-    printf("A: ccNode=%x retainCount=%d\n", (unsigned int)ccNode, [ccNode retainCount]);
+    //printf("A: ccNode=%x retainCount=%d\n", (unsigned int)ccNode, [ccNode retainCount]);
     [ccNode retain];
-    printf("B: ccNode=%x retainCount=%d\n", (unsigned int)ccNode, [ccNode retainCount]);
+    //printf("B: ccNode=%x retainCount=%d\n", (unsigned int)ccNode, [ccNode retainCount]);
     cNSObjectContainer = mrb_class_get(mrb, "NSObjectContainer");
     node = mrb_obj_value(Data_Wrap_Struct(mrb, cNSObjectContainer, &mrb_data_type_nsobject_container, (void*)ccNode));
     mrb_iv_set(mrb, self, mrb_intern(mrb, "@_CCNode"), node);
@@ -148,6 +151,34 @@ mrb_value cNode_addChild(mrb_state *mrb, mrb_value self)
     return mrb_nil_value();
 }
 
+/**
+ * removeChild(child)
+ * removeChild(child, :cleanup=>true)
+ */
+mrb_value cNode_removeChild(mrb_state *mrb, mrb_value self)
+{
+    CCNode *selfCCNode;
+    CCNode *childCCNode;
+    mrb_value child;
+    mrb_value *argv;
+    int argc;
+    
+    mrb_get_args(mrb, "o*", &child, &argv, &argc);
+    // mrb_p(mrb, child);
+    
+    childCCNode = cNode__get_CCNode(mrb, child);
+    
+    // TODO cleanup
+    
+    selfCCNode = cNode__get_CCNode(mrb, self);
+    // mrb_p(mrb, self);
+    [selfCCNode removeChild:childCCNode cleanup:YES];
+    
+    return mrb_nil_value();
+    
+}
+
+
 mrb_value cScene_initialize(mrb_state *mrb, mrb_value self)
 {
     self = cNode_initialize(mrb, self);
@@ -162,9 +193,10 @@ mrb_value cLayer_initialize(mrb_state *mrb, mrb_value self)
     // printf("cLayer_initialize\n");
 
     MrbLayer *mrbLayer;
-    mrbLayer = [MrbLayer node:mrb];
+    mrbLayer = [MrbLayer node];
+    [mrbLayer setMrb:mrb andValue:self];
     cNode__set_CCNode(mrb, self, mrbLayer);
-
+    mrb_p(mrb, self);
     return self;
 }
 
@@ -196,6 +228,19 @@ mrb_value cLayer_isAccelerometerEnabled_SET(mrb_state *mrb, mrb_value self)
     return mrb_nil_value();
 }
 
+mrb_value cLayer_tickInterval_SET(mrb_state *mrb, mrb_value self)
+{
+    MrbLayer *mrbLayer;
+    
+    mrb_value interval;
+    mrb_get_args(mrb, "o", &interval);
+    
+    mrbLayer = (MrbLayer*)cNode__get_CCNode(mrb, self);
+    [mrbLayer scheduleTick:mrb_float(interval)];
+
+    return mrb_nil_value();
+}
+
 mrb_value cSprite_initialize(mrb_state *mrb, mrb_value self)
 {
     self = cNode_initialize(mrb, self);
@@ -203,7 +248,7 @@ mrb_value cSprite_initialize(mrb_state *mrb, mrb_value self)
 
     mrb_value opts;
     mrb_value file;
-    CCSprite *ccSprite;
+    MrbSprite *mrbSprite;
 
     mrb_get_args(mrb, "o", &opts);
 
@@ -211,10 +256,24 @@ mrb_value cSprite_initialize(mrb_state *mrb, mrb_value self)
     // mrb_p(mrb, file);
     char* cstr_file = mrb_string_value_cstr(mrb, &file);
 
-    ccSprite = [CCSprite spriteWithFile:[NSString stringWithUTF8String:cstr_file]];
-    cNode__set_CCNode(mrb, self, ccSprite);
-
+    mrbSprite = [MrbSprite spriteWithFile:[NSString stringWithUTF8String:cstr_file]];
+    [mrbSprite setMrb:mrb andValue:self];
+    cNode__set_CCNode(mrb, self, mrbSprite);
+    mrb_p(mrb, self);
     return self;
+}
+
+mrb_value cSprite_tickInterval_SET(mrb_state *mrb, mrb_value self)
+{
+    MrbSprite *mrbSprite;
+    
+    mrb_value interval;
+    mrb_get_args(mrb, "o", &interval);
+    
+    mrbSprite = (MrbSprite*)cNode__get_CCNode(mrb, self);
+    [mrbSprite scheduleTick:mrb_float(interval)];
+
+    return mrb_nil_value();
 }
 
 -(void) initClasses
@@ -238,17 +297,20 @@ mrb_value cSprite_initialize(mrb_state *mrb, mrb_value self)
     mrb_define_method(mrb, cNode, "initialize", cNode_initialize,   ARGS_ANY());
     mrb_define_method(mrb, cNode, "position=",  cNode_position_SET, ARGS_REQ(1));
     mrb_define_method(mrb, cNode, "addChild",   cNode_addChild,     ARGS_ANY());
+    mrb_define_method(mrb, cNode, "removeChild",cNode_removeChild,  ARGS_ANY());
 
     cLayer  = mrb_define_class_under(mrb, mCocos2d, "Layer",  cNode); // Layer  < Node
     mrb_define_method(mrb, cLayer, "initialize", cLayer_initialize, ARGS_ANY());
     mrb_define_method(mrb, cLayer, "isTouchEnabled=",         cLayer_isTouchEnabled_SET,         ARGS_REQ(1));
     mrb_define_method(mrb, cLayer, "isAccelerometerEnabled=", cLayer_isAccelerometerEnabled_SET, ARGS_REQ(1));
+    mrb_define_method(mrb, cLayer, "tickInterval=", cLayer_tickInterval_SET, ARGS_REQ(1));
 
     cScene  = mrb_define_class_under(mrb, mCocos2d, "Scene",  cNode); // Scene  < Node
     mrb_define_method(mrb, cScene, "initialize", cScene_initialize, ARGS_ANY());
     
     cSprite = mrb_define_class_under(mrb, mCocos2d, "Sprite", cNode); // Sprite < Node
     mrb_define_method(mrb, cSprite, "initialize", cSprite_initialize, ARGS_ANY());
+    mrb_define_method(mrb, cSprite, "tickInterval=", cSprite_tickInterval_SET, ARGS_REQ(1));
 }
 
 -(void) loadFile:(NSString*)file

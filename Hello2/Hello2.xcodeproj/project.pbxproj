@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0020A75015568E5C000B9D8C /* MrbSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 0020A74F15568E5B000B9D8C /* MrbSprite.m */; };
 		002C6667154D80C300C2159E /* Hello2.rb in Resources */ = {isa = PBXBuildFile; fileRef = 002C6666154D80C300C2159E /* Hello2.rb */; };
 		002C666B154D82C800C2159E /* Cocos2dMrb.m in Sources */ = {isa = PBXBuildFile; fileRef = 002C666A154D82C800C2159E /* Cocos2dMrb.m */; };
 		002C6678154EBAAA00C2159E /* ruby.png in Resources */ = {isa = PBXBuildFile; fileRef = 002C6677154EBAAA00C2159E /* ruby.png */; };
@@ -185,6 +186,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0020A74E15568E5B000B9D8C /* MrbSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MrbSprite.h; sourceTree = "<group>"; };
+		0020A74F15568E5B000B9D8C /* MrbSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MrbSprite.m; sourceTree = "<group>"; };
 		002C6666154D80C300C2159E /* Hello2.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = Hello2.rb; sourceTree = "<group>"; };
 		002C6669154D82C800C2159E /* Cocos2dMrb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cocos2dMrb.h; sourceTree = "<group>"; };
 		002C666A154D82C800C2159E /* Cocos2dMrb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cocos2dMrb.m; sourceTree = "<group>"; };
@@ -580,6 +583,8 @@
 				002C666A154D82C800C2159E /* Cocos2dMrb.m */,
 				009CA57B1552E0A700B3FC9A /* MrbLayer.h */,
 				009CA57C1552E0A700B3FC9A /* MrbLayer.m */,
+				0020A74E15568E5B000B9D8C /* MrbSprite.h */,
+				0020A74F15568E5B000B9D8C /* MrbSprite.m */,
 				007E77F815443A76002DC9A7 /* AppDelegate.h */,
 				007E77F915443A76002DC9A7 /* AppDelegate.m */,
 				007E77FB15443A76002DC9A7 /* RootViewController.h */,
@@ -1283,6 +1288,7 @@
 				007E7A891545CC81002DC9A7 /* y.tab.c in Sources */,
 				002C666B154D82C800C2159E /* Cocos2dMrb.m in Sources */,
 				009CA57D1552E0A700B3FC9A /* MrbLayer.m in Sources */,
+				0020A75015568E5C000B9D8C /* MrbSprite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

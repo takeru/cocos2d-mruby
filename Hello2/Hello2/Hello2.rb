@@ -26,14 +26,31 @@ class NSObjectContainer
   end
 end
 
+class RubyLogo < Cocos2d::Sprite
+  def initialize
+    super(:file=>"ruby.png")
+    size = Cocos2d.winSize
+    size.width  *= 0.3
+    size.height *= 0.7
+    self.position = size
+    self.tickInterval = 0.01
+  end
+
+  def tick(dt)
+    100.times do |n|
+      "#{dt} #{n}"
+    end
+  end
+end
+
 class HelloLayer < Cocos2d::Layer
   def initialize
     super
     # puts "HelloLayer#initialize"
     self.isTouchEnabled = true
 
-    player = Cocos2d::Sprite.new(:file=>"Icon-Small.png")
-    puts "player=" + player.inspect
+    player = Cocos2d::Sprite.new(:file=>"Icon-Small@2x.png")
+    #puts "player=" + player.inspect
     # p player._CCNode.nsobject_pointer.to_s(16)
     # puts("player._CCNode.nsobject_pointer=%s" % 1) #player._CCNode.nsobject_pointer
     # player.hello
@@ -52,27 +69,58 @@ class HelloLayer < Cocos2d::Layer
     size.width  *= 0.8
     size.height *= 0.3
     player2.position = size
-    puts "A: player2=" + player2.inspect
+    #puts "A: player2=" + player2.inspect
     addChild(player2)
-    puts "B: player2=" + player2.inspect
+    #puts "B: player2=" + player2.inspect
     
-    logo = Cocos2d::Sprite.new(:file=>"ruby.png")
-    size = Cocos2d.winSize
-    size.width  *= 0.3
-    size.height *= 0.7
-    logo.position = size
-    puts "A: logo=" + logo.inspect
+    logo = RubyLogo.new
+    #puts "A: logo=" + logo.inspect
     addChild(logo)
-    puts "B: logo=" + logo.inspect
+    #puts "B: logo=" + logo.inspect
     @logo = logo
 
+    self.tickInterval = 1.0
+    
     # GC.start
+    @touch_count = 0
+    @players = []
+  end
+
+  def tick(dt)
+    puts "HelloLayer#tick dt=#{dt}"
+  end
+
+  def touchesBegan(e)
+    print "#{@touch_count} B"
+
+    player = Cocos2d::Sprite.new(:file=>"Icon-Small.png")
+    size = Cocos2d.winSize
+    size.width  *= (@touch_count % 10) * 0.1
+    size.height *= (@touch_count / 10) * 0.1
+    player.position = size
+    addChild(player)
+    @players.push(player)
+    while 7 < @players.size
+      old_player = @players.shift
+      removeChild(old_player)
+    end
+    @touch_count = (@touch_count+1) % 100
+  end
+  def touchesMoved(e)
+    print "M"
+  end
+  def touchesEnded(e)
+    puts "E"
+  end
+  def touchesCancelled(e)
+    puts "C"
   end
 end
 
 def createLayer
-  $layer = HelloLayer.new
-  return $layer
+  layer = HelloLayer.new
+  $layer = layer
+  return layer
 #rescue # !!BUG!!
 #  p e
 end
