@@ -181,6 +181,7 @@
 		007E7A7E15443F55002DC9A7 /* vm.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A2815443F55002DC9A7 /* vm.c */; };
 		007E7A871545C418002DC9A7 /* mrblib.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A861545C418002DC9A7 /* mrblib.c */; };
 		007E7A891545CC81002DC9A7 /* y.tab.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A881545CC81002DC9A7 /* y.tab.c */; };
+		009CA57D1552E0A700B3FC9A /* MrbLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 009CA57C1552E0A700B3FC9A /* MrbLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -516,6 +517,8 @@
 		007E7A9B1545D8E7002DC9A7 /* range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = range.h; sourceTree = "<group>"; };
 		007E7A9C1545D8E7002DC9A7 /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
 		007E7A9D1545D8E7002DC9A7 /* struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = struct.h; sourceTree = "<group>"; };
+		009CA57B1552E0A700B3FC9A /* MrbLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MrbLayer.h; sourceTree = "<group>"; };
+		009CA57C1552E0A700B3FC9A /* MrbLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MrbLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -575,6 +578,8 @@
 				007E79AE15443F55002DC9A7 /* mruby */,
 				002C6669154D82C800C2159E /* Cocos2dMrb.h */,
 				002C666A154D82C800C2159E /* Cocos2dMrb.m */,
+				009CA57B1552E0A700B3FC9A /* MrbLayer.h */,
+				009CA57C1552E0A700B3FC9A /* MrbLayer.m */,
 				007E77F815443A76002DC9A7 /* AppDelegate.h */,
 				007E77F915443A76002DC9A7 /* AppDelegate.m */,
 				007E77FB15443A76002DC9A7 /* RootViewController.h */,
@@ -1277,6 +1282,7 @@
 				007E7A871545C418002DC9A7 /* mrblib.c in Sources */,
 				007E7A891545CC81002DC9A7 /* y.tab.c in Sources */,
 				002C666B154D82C800C2159E /* Cocos2dMrb.m in Sources */,
+				009CA57D1552E0A700B3FC9A /* MrbLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

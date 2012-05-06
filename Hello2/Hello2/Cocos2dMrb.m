@@ -1,5 +1,6 @@
 
 #import "Cocos2dMrb.h"
+#import "MrbLayer.h"
 #include "mruby/proc.h"
 #include "mruby/hash.h"
 #include "mruby/variable.h"
@@ -21,16 +22,31 @@
 	return self;
 }
 
-
-void objc_object_free(mrb_state *mrb, void *p)
+void nsobject_container_free(mrb_state *mrb, void *p)
 {
-    printf("objc_object_free p=%x\n", (unsigned int)p);
-    [((NSObject*)p) release];
+    id obj = (NSObject*)p;
+    NSUInteger c = [obj retainCount];
+    printf("nsobject_container_free p=%x retainCount=%d->%d \n", (unsigned int)p, c, c-1);
+    [obj release];
 }
 
-struct mrb_data_type mrb_objc_object_data_type = {
-    "objc_object", objc_object_free,
+struct mrb_data_type mrb_data_type_nsobject_container = {
+    "nsobject_container", nsobject_container_free,
 };
+
+mrb_value cNSObjectContainer_nsobject_pointer(mrb_state *mrb, mrb_value self)
+{
+    NSObject* p;
+    Data_Get_Struct(mrb, self, &mrb_data_type_nsobject_container, p);
+    return mrb_fixnum_value((mrb_int)p);
+}
+
+mrb_value cNSObjectContainer_retainCount(mrb_state *mrb, mrb_value self)
+{
+    NSObject* p;
+    Data_Get_Struct(mrb, self, &mrb_data_type_nsobject_container, p);
+    return mrb_fixnum_value((mrb_int)([p retainCount]));
+}
 
 mrb_value mCocos2d_test(mrb_state *mrb, mrb_value self)
 {
@@ -66,11 +82,13 @@ mrb_value cNode_initialize(mrb_state *mrb, mrb_value self)
 void cNode__set_CCNode(mrb_state *mrb, mrb_value self, CCNode *ccNode)
 {
     mrb_value node;
-    struct RClass *cObjCObject;
+    struct RClass *cNSObjectContainer;
 
+    printf("A: ccNode=%x retainCount=%d\n", (unsigned int)ccNode, [ccNode retainCount]);
     [ccNode retain];
-    cObjCObject = mrb_class_get(mrb, "ObjCObject");
-    node = mrb_obj_value(Data_Wrap_Struct(mrb, cObjCObject, &mrb_objc_object_data_type, (void*)ccNode));
+    printf("B: ccNode=%x retainCount=%d\n", (unsigned int)ccNode, [ccNode retainCount]);
+    cNSObjectContainer = mrb_class_get(mrb, "NSObjectContainer");
+    node = mrb_obj_value(Data_Wrap_Struct(mrb, cNSObjectContainer, &mrb_data_type_nsobject_container, (void*)ccNode));
     mrb_iv_set(mrb, self, mrb_intern(mrb, "@_CCNode"), node);
 }
 
@@ -80,7 +98,7 @@ CCNode* cNode__get_CCNode(mrb_state *mrb, mrb_value self)
     mrb_value node;
 
     node = mrb_iv_get(mrb, self, mrb_intern(mrb, "@_CCNode"));
-    Data_Get_Struct(mrb, node, &mrb_objc_object_data_type, ccNode);
+    Data_Get_Struct(mrb, node, &mrb_data_type_nsobject_container, ccNode);
 
     return ccNode;
 }
@@ -143,11 +161,39 @@ mrb_value cLayer_initialize(mrb_state *mrb, mrb_value self)
     self = cNode_initialize(mrb, self);
     // printf("cLayer_initialize\n");
 
-    CCLayer *ccLayer;
-    ccLayer = [CCLayer node];
-    cNode__set_CCNode(mrb, self, ccLayer);
+    MrbLayer *mrbLayer;
+    mrbLayer = [MrbLayer node:mrb];
+    cNode__set_CCNode(mrb, self, mrbLayer);
 
     return self;
+}
+
+mrb_value cLayer_isTouchEnabled_SET(mrb_state *mrb, mrb_value self)
+{
+    CCLayer *ccLayer;
+    
+    mrb_value enabled;
+    mrb_get_args(mrb, "o", &enabled);
+    
+    ccLayer = (CCLayer*)cNode__get_CCNode(mrb, self);
+
+    ccLayer.isTouchEnabled = mrb_test(enabled) ? TRUE : FALSE;
+    
+    return mrb_nil_value();
+}
+
+mrb_value cLayer_isAccelerometerEnabled_SET(mrb_state *mrb, mrb_value self)
+{
+    CCLayer *ccLayer;
+    
+    mrb_value enabled;
+    mrb_get_args(mrb, "o", &enabled);
+    
+    ccLayer = (CCLayer*)cNode__get_CCNode(mrb, self);
+    
+    ccLayer.isAccelerometerEnabled = mrb_test(enabled) ? TRUE : FALSE;
+    
+    return mrb_nil_value();
 }
 
 mrb_value cSprite_initialize(mrb_state *mrb, mrb_value self)
@@ -173,14 +219,16 @@ mrb_value cSprite_initialize(mrb_state *mrb, mrb_value self)
 
 -(void) initClasses
 {
-    struct RClass *cObjCObject; // class  ObjCObject
+    struct RClass *cNSObjectContainer; // class NSObjectContainer
     struct RClass *mCocos2d;    // module Cocos2d
     struct RClass *cNode;       // class  Cocos2d::Node
     struct RClass *cScene;      // class  Cocos2d::Scene
     struct RClass *cLayer;      // class  Cocos2d::Layer
     struct RClass *cSprite;     // class  Cocos2d::Sprite
 
-    cObjCObject = mrb_define_class(mrb, "ObjCObject", mrb_class_obj_get(mrb, "Object"));
+    cNSObjectContainer = mrb_define_class(mrb, "NSObjectContainer", mrb_class_obj_get(mrb, "Object"));
+    mrb_define_method(mrb, cNSObjectContainer, "nsobject_pointer", cNSObjectContainer_nsobject_pointer, ARGS_NONE());
+    mrb_define_method(mrb, cNSObjectContainer, "retainCount",      cNSObjectContainer_retainCount,      ARGS_NONE());
     
     mCocos2d = mrb_define_module(mrb, "Cocos2d");
     mrb_define_class_method(mrb, mCocos2d, "test", mCocos2d_test, ARGS_REQ(1));
@@ -193,6 +241,8 @@ mrb_value cSprite_initialize(mrb_state *mrb, mrb_value self)
 
     cLayer  = mrb_define_class_under(mrb, mCocos2d, "Layer",  cNode); // Layer  < Node
     mrb_define_method(mrb, cLayer, "initialize", cLayer_initialize, ARGS_ANY());
+    mrb_define_method(mrb, cLayer, "isTouchEnabled=",         cLayer_isTouchEnabled_SET,         ARGS_REQ(1));
+    mrb_define_method(mrb, cLayer, "isAccelerometerEnabled=", cLayer_isAccelerometerEnabled_SET, ARGS_REQ(1));
 
     cScene  = mrb_define_class_under(mrb, mCocos2d, "Scene",  cNode); // Scene  < Node
     mrb_define_method(mrb, cScene, "initialize", cScene_initialize, ARGS_ANY());

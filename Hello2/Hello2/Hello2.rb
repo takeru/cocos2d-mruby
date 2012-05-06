@@ -20,14 +20,22 @@ module Cocos2d
   end
 end
 
+class NSObjectContainer
+  def inspect
+    "#<NSObjectContainer p="+self.nsobject_pointer.to_s(16)+" retainCount="+self.retainCount+">"
+  end
+end
+
 class HelloLayer < Cocos2d::Layer
   def initialize
     super
     # puts "HelloLayer#initialize"
+    self.isTouchEnabled = true
 
     player = Cocos2d::Sprite.new(:file=>"Icon-Small.png")
     puts "player=" + player.inspect
-    # puts "player._CCNode=" + player._CCNode.inspect
+    # p player._CCNode.nsobject_pointer.to_s(16)
+    # puts("player._CCNode.nsobject_pointer=%s" % 1) #player._CCNode.nsobject_pointer
     # player.hello
 
     size = Cocos2d.winSize
@@ -44,19 +52,27 @@ class HelloLayer < Cocos2d::Layer
     size.width  *= 0.8
     size.height *= 0.3
     player2.position = size
+    puts "A: player2=" + player2.inspect
     addChild(player2)
-
+    puts "B: player2=" + player2.inspect
+    
     logo = Cocos2d::Sprite.new(:file=>"ruby.png")
     size = Cocos2d.winSize
     size.width  *= 0.3
     size.height *= 0.7
     logo.position = size
+    puts "A: logo=" + logo.inspect
     addChild(logo)
+    puts "B: logo=" + logo.inspect
+    @logo = logo
+
+    # GC.start
   end
 end
 
 def createLayer
-  return HelloLayer.new
+  $layer = HelloLayer.new
+  return $layer
 #rescue # !!BUG!!
 #  p e
 end
