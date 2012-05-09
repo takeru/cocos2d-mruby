@@ -7,8 +7,14 @@
 //
 
 #import "MrbLayer.h"
+#import "CCTouchDispatcher.h"
 
 @implementation MrbLayer
+
+- (void) registerWithTouchDispatcher
+{
+    [[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:INT_MIN+1 swallowsTouches:YES];
+}
 
 -(void) setMrb:(mrb_state*)mrb_ andValue:(mrb_value)value_
 {
@@ -38,6 +44,21 @@
     }
     mrb_funcall(mrb, value, "tick", 1, mrb_float_value(dt));
 }
+
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    if(mrb_nil_p(value)){
+        return NO;
+    }
+    mrb_value _touch = mrb_nil_value(); // TODO convert from event
+    mrb_value _event = mrb_nil_value(); // TODO convert from event
+    mrb_funcall(mrb, value, "touchBegan", 2, _touch, _event);
+
+    //mrb_value str = mrb_str_new_cstr(mrb, "B");
+    //mrb_funcall(mrb, mrb_top_self(mrb), "print", 1, str);
+    return YES;
+}
+
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {

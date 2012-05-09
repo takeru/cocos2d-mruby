@@ -5,11 +5,23 @@ Cocos2d.test
 
 module Cocos2d
   class Size
-    def width;  @width;  end
-    def height; @height; end
+    def width;      @width;  end
+    def height;     @height; end
     def width=(w);  @width  = w.to_f; end
     def height=(h); @height = h.to_f; end
   end
+
+  class Position
+    def initialize(x, y)
+      @x = x
+      @y = y
+    end
+    def x;     @x; end
+    def y;     @y; end
+    def x=(x); @x = x.to_f; end
+    def y=(y); @y = y.to_f; end
+  end
+
   class Node
     def _CCNode
       @_CCNode
@@ -29,17 +41,35 @@ end
 class RubyLogo < Cocos2d::Sprite
   def initialize
     super(:file=>"ruby.png")
-    size = Cocos2d.winSize
-    size.width  *= 0.3
-    size.height *= 0.7
-    self.position = size
+    @winSize = Cocos2d.winSize
+
+    @x, @y = @winSize.width*0.3, @winSize.height*0.7
+    self.position = Cocos2d::Position.new(@x, @y)
     self.tickInterval = 0.01
+    @dx =  1
+    @dy = -1
   end
 
   def tick(dt)
     100.times do |n|
       "#{dt} #{n}"
     end
+
+    @x += @dx
+    @y += @dy
+    if @x < 0
+      @dx *= -1.1
+    end
+    if @y < 0
+      @dy *= -1.1
+    end
+    if @winSize.width < @x
+      @dx *= -1.1
+    end
+    if @winSize.height < @y
+      @dy *= -1.1
+    end
+    self.position = Cocos2d::Position.new(@x, @y)
   end
 end
 
@@ -49,34 +79,18 @@ class HelloLayer < Cocos2d::Layer
     # puts "HelloLayer#initialize"
     self.isTouchEnabled = true
 
-    player = Cocos2d::Sprite.new(:file=>"Icon-Small@2x.png")
-    #puts "player=" + player.inspect
-    # p player._CCNode.nsobject_pointer.to_s(16)
-    # puts("player._CCNode.nsobject_pointer=%s" % 1) #player._CCNode.nsobject_pointer
-    # player.hello
+    @winSize = Cocos2d.winSize
 
-    size = Cocos2d.winSize
-    # p size
-    size.width  /= 2
-    size.height /= 2
-    # p size
-    player.position = size
-
-    addChild(player)
+    player1 = Cocos2d::Sprite.new(:file=>"Icon-Small@2x.png")
+    player1.position = Cocos2d::Position.new(@winSize.width/2, @winSize.height/2)
+    addChild(player1)
 
     player2 = Cocos2d::Sprite.new(:file=>"Icon-72.png")
-    size = Cocos2d.winSize
-    size.width  *= 0.8
-    size.height *= 0.3
-    player2.position = size
-    #puts "A: player2=" + player2.inspect
+    player2.position = Cocos2d::Position.new(@winSize.width*0.8, @winSize.height+0.3)
     addChild(player2)
-    #puts "B: player2=" + player2.inspect
     
     logo = RubyLogo.new
-    #puts "A: logo=" + logo.inspect
     addChild(logo)
-    #puts "B: logo=" + logo.inspect
     @logo = logo
 
     self.tickInterval = 1.0
@@ -90,14 +104,17 @@ class HelloLayer < Cocos2d::Layer
     puts "HelloLayer#tick dt=#{dt}"
   end
 
+  def touchBegan(t, e)
+    # convertTouchToNodeSpace(t)
+    # convertTouchToNodeSpaceAR
+    touchesBegan(e)
+  end
+
   def touchesBegan(e)
     print "#{@touch_count} B"
 
     player = Cocos2d::Sprite.new(:file=>"Icon-Small.png")
-    size = Cocos2d.winSize
-    size.width  *= (@touch_count % 10) * 0.1
-    size.height *= (@touch_count / 10) * 0.1
-    player.position = size
+    player.position = Cocos2d::Position.new(@winSize.width * (@touch_count % 10) * 0.1, @winSize.height * (@touch_count / 10) * 0.1)
     addChild(player)
     @players.push(player)
     while 7 < @players.size

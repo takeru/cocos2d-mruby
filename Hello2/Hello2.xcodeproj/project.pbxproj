@@ -183,6 +183,7 @@
 		007E7A871545C418002DC9A7 /* mrblib.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A861545C418002DC9A7 /* mrblib.c */; };
 		007E7A891545CC81002DC9A7 /* y.tab.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A881545CC81002DC9A7 /* y.tab.c */; };
 		009CA57D1552E0A700B3FC9A /* MrbLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 009CA57C1552E0A700B3FC9A /* MrbLayer.m */; };
+		00D42462155AE7CE00656363 /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = 00D42461155AE7CE00656363 /* time.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -460,7 +461,6 @@
 		007E79ED15443F55002DC9A7 /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
 		007E79EE15443F55002DC9A7 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
 		007E79EF15443F55002DC9A7 /* etc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = etc.c; sourceTree = "<group>"; };
-		007E79F015443F55002DC9A7 /* eval_intern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eval_intern.h; sourceTree = "<group>"; };
 		007E79F315443F55002DC9A7 /* gc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gc.c; sourceTree = "<group>"; };
 		007E79F415443F55002DC9A7 /* gc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gc.h; sourceTree = "<group>"; };
 		007E79F515443F55002DC9A7 /* hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hash.c; sourceTree = "<group>"; };
@@ -507,7 +507,6 @@
 		007E7A2615443F55002DC9A7 /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = version.c; sourceTree = "<group>"; };
 		007E7A2715443F55002DC9A7 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
 		007E7A2815443F55002DC9A7 /* vm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vm.c; sourceTree = "<group>"; };
-		007E7A2915443F55002DC9A7 /* vm_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vm_core.h; sourceTree = "<group>"; };
 		007E7A861545C418002DC9A7 /* mrblib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrblib.c; sourceTree = "<group>"; };
 		007E7A881545CC81002DC9A7 /* y.tab.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = y.tab.c; sourceTree = "<group>"; };
 		007E7A941545D8E7002DC9A7 /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
@@ -522,6 +521,7 @@
 		007E7A9D1545D8E7002DC9A7 /* struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = struct.h; sourceTree = "<group>"; };
 		009CA57B1552E0A700B3FC9A /* MrbLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MrbLayer.h; sourceTree = "<group>"; };
 		009CA57C1552E0A700B3FC9A /* MrbLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MrbLayer.m; sourceTree = "<group>"; };
+		00D42461155AE7CE00656363 /* time.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = time.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1008,7 +1008,6 @@
 				007E79ED15443F55002DC9A7 /* error.c */,
 				007E79EE15443F55002DC9A7 /* error.h */,
 				007E79EF15443F55002DC9A7 /* etc.c */,
-				007E79F015443F55002DC9A7 /* eval_intern.h */,
 				007E79F315443F55002DC9A7 /* gc.c */,
 				007E79F415443F55002DC9A7 /* gc.h */,
 				007E79F515443F55002DC9A7 /* hash.c */,
@@ -1046,6 +1045,7 @@
 				007E7A1C15443F55002DC9A7 /* string.c */,
 				007E7A1D15443F55002DC9A7 /* struct.c */,
 				007E7A1E15443F55002DC9A7 /* symbol.c */,
+				00D42461155AE7CE00656363 /* time.c */,
 				007E7A1F15443F55002DC9A7 /* transcode.c */,
 				007E7A2015443F55002DC9A7 /* transcode_data.h */,
 				007E7A2115443F55002DC9A7 /* unicode.c */,
@@ -1055,7 +1055,6 @@
 				007E7A2615443F55002DC9A7 /* version.c */,
 				007E7A2715443F55002DC9A7 /* version.h */,
 				007E7A2815443F55002DC9A7 /* vm.c */,
-				007E7A2915443F55002DC9A7 /* vm_core.h */,
 				007E7A881545CC81002DC9A7 /* y.tab.c */,
 			);
 			path = src;
@@ -1289,6 +1288,7 @@
 				002C666B154D82C800C2159E /* Cocos2dMrb.m in Sources */,
 				009CA57D1552E0A700B3FC9A /* MrbLayer.m in Sources */,
 				0020A75015568E5C000B9D8C /* MrbSprite.m in Sources */,
+				00D42462155AE7CE00656363 /* time.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

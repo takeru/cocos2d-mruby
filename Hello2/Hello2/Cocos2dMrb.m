@@ -109,17 +109,17 @@ CCNode* cNode__get_CCNode(mrb_state *mrb, mrb_value self)
 mrb_value cNode_position_SET(mrb_state *mrb, mrb_value self)
 {
     CCNode *ccNode;
-    mrb_float width;
-    mrb_float height;
+    mrb_float x;
+    mrb_float y;
     
     mrb_value size;
     mrb_get_args(mrb, "o", &size);
     
     ccNode = cNode__get_CCNode(mrb, self);
     
-    width  = mrb_float(mrb_iv_get(mrb, size, mrb_intern(mrb, "@width" )));
-    height = mrb_float(mrb_iv_get(mrb, size, mrb_intern(mrb, "@height")));
-    ccNode.position = ccp(width, height);
+    x = mrb_float(mrb_iv_get(mrb, size, mrb_intern(mrb, "@x" )));
+    y = mrb_float(mrb_iv_get(mrb, size, mrb_intern(mrb, "@y")));
+    ccNode.position = ccp(x, y);
 
     return mrb_nil_value();
 }
