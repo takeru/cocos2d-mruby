@@ -138,14 +138,12 @@
 		007E7A4915443F55002DC9A7 /* string.rb in Resources */ = {isa = PBXBuildFile; fileRef = 007E79D915443F55002DC9A7 /* string.rb */; };
 		007E7A4A15443F55002DC9A7 /* struct.rb in Resources */ = {isa = PBXBuildFile; fileRef = 007E79DA15443F55002DC9A7 /* struct.rb */; };
 		007E7A4E15443F55002DC9A7 /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E79DF15443F55002DC9A7 /* array.c */; };
-		007E7A4F15443F55002DC9A7 /* ascii.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E79E015443F55002DC9A7 /* ascii.c */; };
 		007E7A5015443F55002DC9A7 /* cdump.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E79E115443F55002DC9A7 /* cdump.c */; };
 		007E7A5115443F55002DC9A7 /* class.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E79E315443F55002DC9A7 /* class.c */; };
 		007E7A5215443F55002DC9A7 /* codegen.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E79E415443F55002DC9A7 /* codegen.c */; };
 		007E7A5315443F55002DC9A7 /* compar.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E79E515443F55002DC9A7 /* compar.c */; };
 		007E7A5415443F55002DC9A7 /* crc.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E79E715443F55002DC9A7 /* crc.c */; };
 		007E7A5515443F55002DC9A7 /* dump.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E79E815443F55002DC9A7 /* dump.c */; };
-		007E7A5615443F55002DC9A7 /* encoding.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E79EA15443F55002DC9A7 /* encoding.c */; };
 		007E7A5715443F55002DC9A7 /* enum.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E79EC15443F55002DC9A7 /* enum.c */; };
 		007E7A5815443F55002DC9A7 /* error.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E79ED15443F55002DC9A7 /* error.c */; };
 		007E7A5915443F55002DC9A7 /* etc.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E79EF15443F55002DC9A7 /* etc.c */; };
@@ -173,10 +171,6 @@
 		007E7A7515443F55002DC9A7 /* string.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A1C15443F55002DC9A7 /* string.c */; };
 		007E7A7615443F55002DC9A7 /* struct.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A1D15443F55002DC9A7 /* struct.c */; };
 		007E7A7715443F55002DC9A7 /* symbol.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A1E15443F55002DC9A7 /* symbol.c */; };
-		007E7A7815443F55002DC9A7 /* transcode.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A1F15443F55002DC9A7 /* transcode.c */; };
-		007E7A7915443F55002DC9A7 /* unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A2115443F55002DC9A7 /* unicode.c */; };
-		007E7A7A15443F55002DC9A7 /* us_ascii.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A2215443F55002DC9A7 /* us_ascii.c */; };
-		007E7A7B15443F55002DC9A7 /* utf_8.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A2315443F55002DC9A7 /* utf_8.c */; };
 		007E7A7C15443F55002DC9A7 /* variable.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A2415443F55002DC9A7 /* variable.c */; };
 		007E7A7E15443F55002DC9A7 /* vm.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A2815443F55002DC9A7 /* vm.c */; };
 		007E7A871545C418002DC9A7 /* mrblib.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A861545C418002DC9A7 /* mrblib.c */; };
@@ -447,21 +441,18 @@
 		007E79D915443F55002DC9A7 /* string.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = string.rb; sourceTree = "<group>"; };
 		007E79DA15443F55002DC9A7 /* struct.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = struct.rb; sourceTree = "<group>"; };
 		007E79DF15443F55002DC9A7 /* array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = array.c; sourceTree = "<group>"; };
-		007E79E015443F55002DC9A7 /* ascii.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ascii.c; sourceTree = "<group>"; };
 		007E79E115443F55002DC9A7 /* cdump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cdump.c; sourceTree = "<group>"; };
 		007E79E315443F55002DC9A7 /* class.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = class.c; sourceTree = "<group>"; };
 		007E79E415443F55002DC9A7 /* codegen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = codegen.c; sourceTree = "<group>"; };
 		007E79E515443F55002DC9A7 /* compar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = compar.c; sourceTree = "<group>"; };
 		007E79E715443F55002DC9A7 /* crc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crc.c; sourceTree = "<group>"; };
 		007E79E815443F55002DC9A7 /* dump.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dump.c; sourceTree = "<group>"; };
-		007E79EA15443F55002DC9A7 /* encoding.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = encoding.c; sourceTree = "<group>"; };
 		007E79EB15443F55002DC9A7 /* encoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encoding.h; sourceTree = "<group>"; };
 		007E79EC15443F55002DC9A7 /* enum.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = enum.c; sourceTree = "<group>"; };
 		007E79ED15443F55002DC9A7 /* error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = error.c; sourceTree = "<group>"; };
 		007E79EE15443F55002DC9A7 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
 		007E79EF15443F55002DC9A7 /* etc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = etc.c; sourceTree = "<group>"; };
 		007E79F315443F55002DC9A7 /* gc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = gc.c; sourceTree = "<group>"; };
-		007E79F415443F55002DC9A7 /* gc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gc.h; sourceTree = "<group>"; };
 		007E79F515443F55002DC9A7 /* hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hash.c; sourceTree = "<group>"; };
 		007E79F615443F55002DC9A7 /* init.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = init.c; sourceTree = "<group>"; };
 		007E79F715443F55002DC9A7 /* init_ext.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = init_ext.c; sourceTree = "<group>"; };
@@ -495,11 +486,6 @@
 		007E7A1C15443F55002DC9A7 /* string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = string.c; sourceTree = "<group>"; };
 		007E7A1D15443F55002DC9A7 /* struct.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = struct.c; sourceTree = "<group>"; };
 		007E7A1E15443F55002DC9A7 /* symbol.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = symbol.c; sourceTree = "<group>"; };
-		007E7A1F15443F55002DC9A7 /* transcode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = transcode.c; sourceTree = "<group>"; };
-		007E7A2015443F55002DC9A7 /* transcode_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transcode_data.h; sourceTree = "<group>"; };
-		007E7A2115443F55002DC9A7 /* unicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unicode.c; sourceTree = "<group>"; };
-		007E7A2215443F55002DC9A7 /* us_ascii.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = us_ascii.c; sourceTree = "<group>"; };
-		007E7A2315443F55002DC9A7 /* utf_8.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf_8.c; sourceTree = "<group>"; };
 		007E7A2415443F55002DC9A7 /* variable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = variable.c; sourceTree = "<group>"; };
 		007E7A2815443F55002DC9A7 /* vm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vm.c; sourceTree = "<group>"; };
 		007E7A861545C418002DC9A7 /* mrblib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mrblib.c; sourceTree = "<group>"; };
@@ -991,21 +977,18 @@
 			children = (
 				00852DC31571F75A0023D4FD /* math.c */,
 				007E79DF15443F55002DC9A7 /* array.c */,
-				007E79E015443F55002DC9A7 /* ascii.c */,
 				007E79E115443F55002DC9A7 /* cdump.c */,
 				007E79E315443F55002DC9A7 /* class.c */,
 				007E79E415443F55002DC9A7 /* codegen.c */,
 				007E79E515443F55002DC9A7 /* compar.c */,
 				007E79E715443F55002DC9A7 /* crc.c */,
 				007E79E815443F55002DC9A7 /* dump.c */,
-				007E79EA15443F55002DC9A7 /* encoding.c */,
 				007E79EB15443F55002DC9A7 /* encoding.h */,
 				007E79EC15443F55002DC9A7 /* enum.c */,
 				007E79ED15443F55002DC9A7 /* error.c */,
 				007E79EE15443F55002DC9A7 /* error.h */,
 				007E79EF15443F55002DC9A7 /* etc.c */,
 				007E79F315443F55002DC9A7 /* gc.c */,
-				007E79F415443F55002DC9A7 /* gc.h */,
 				007E79F515443F55002DC9A7 /* hash.c */,
 				007E79F615443F55002DC9A7 /* init.c */,
 				007E79F715443F55002DC9A7 /* init_ext.c */,
@@ -1040,11 +1023,6 @@
 				007E7A1D15443F55002DC9A7 /* struct.c */,
 				007E7A1E15443F55002DC9A7 /* symbol.c */,
 				00D42461155AE7CE00656363 /* time.c */,
-				007E7A1F15443F55002DC9A7 /* transcode.c */,
-				007E7A2015443F55002DC9A7 /* transcode_data.h */,
-				007E7A2115443F55002DC9A7 /* unicode.c */,
-				007E7A2215443F55002DC9A7 /* us_ascii.c */,
-				007E7A2315443F55002DC9A7 /* utf_8.c */,
 				007E7A2415443F55002DC9A7 /* variable.c */,
 				007E7A2815443F55002DC9A7 /* vm.c */,
 				007E7A881545CC81002DC9A7 /* y.tab.c */,
@@ -1233,14 +1211,12 @@
 				007E77FD15443A76002DC9A7 /* RootViewController.m in Sources */,
 				007E780015443A76002DC9A7 /* HelloWorldLayer.m in Sources */,
 				007E7A4E15443F55002DC9A7 /* array.c in Sources */,
-				007E7A4F15443F55002DC9A7 /* ascii.c in Sources */,
 				007E7A5015443F55002DC9A7 /* cdump.c in Sources */,
 				007E7A5115443F55002DC9A7 /* class.c in Sources */,
 				007E7A5215443F55002DC9A7 /* codegen.c in Sources */,
 				007E7A5315443F55002DC9A7 /* compar.c in Sources */,
 				007E7A5415443F55002DC9A7 /* crc.c in Sources */,
 				007E7A5515443F55002DC9A7 /* dump.c in Sources */,
-				007E7A5615443F55002DC9A7 /* encoding.c in Sources */,
 				007E7A5715443F55002DC9A7 /* enum.c in Sources */,
 				007E7A5815443F55002DC9A7 /* error.c in Sources */,
 				007E7A5915443F55002DC9A7 /* etc.c in Sources */,
@@ -1268,10 +1244,6 @@
 				007E7A7515443F55002DC9A7 /* string.c in Sources */,
 				007E7A7615443F55002DC9A7 /* struct.c in Sources */,
 				007E7A7715443F55002DC9A7 /* symbol.c in Sources */,
-				007E7A7815443F55002DC9A7 /* transcode.c in Sources */,
-				007E7A7915443F55002DC9A7 /* unicode.c in Sources */,
-				007E7A7A15443F55002DC9A7 /* us_ascii.c in Sources */,
-				007E7A7B15443F55002DC9A7 /* utf_8.c in Sources */,
 				007E7A7C15443F55002DC9A7 /* variable.c in Sources */,
 				007E7A7E15443F55002DC9A7 /* vm.c in Sources */,
 				007E7A871545C418002DC9A7 /* mrblib.c in Sources */,

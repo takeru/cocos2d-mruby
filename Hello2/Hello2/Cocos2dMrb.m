@@ -5,6 +5,7 @@
 #include "mruby/proc.h"
 #include "mruby/hash.h"
 #include "mruby/variable.h"
+#include "mruby/data.h"
 #include "compile.h"
 
 
@@ -196,7 +197,7 @@ mrb_value cLayer_initialize(mrb_state *mrb, mrb_value self)
     mrbLayer = [MrbLayer node];
     [mrbLayer setMrb:mrb andValue:self];
     cNode__set_CCNode(mrb, self, mrbLayer);
-    mrb_p(mrb, self);
+    // mrb_p(mrb, self);
     return self;
 }
 
@@ -259,7 +260,7 @@ mrb_value cSprite_initialize(mrb_state *mrb, mrb_value self)
     mrbSprite = [MrbSprite spriteWithFile:[NSString stringWithUTF8String:cstr_file]];
     [mrbSprite setMrb:mrb andValue:self];
     cNode__set_CCNode(mrb, self, mrbSprite);
-    mrb_p(mrb, self);
+    // mrb_p(mrb, self);
     return self;
 }
 
