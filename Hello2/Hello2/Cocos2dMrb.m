@@ -6,7 +6,7 @@
 #include "mruby/hash.h"
 #include "mruby/variable.h"
 #include "mruby/data.h"
-#include "compile.h"
+#include "mruby/compile.h"
 
 
 @implementation Cocos2dMrb
@@ -319,9 +319,8 @@ mrb_value cSprite_tickInterval_SET(mrb_state *mrb, mrb_value self)
     // NSLog(@"loadFile:%@", file);
     
     FILE* f = fopen([file cStringUsingEncoding:1], "r");
-    int n = mrb_compile_file(mrb, f);
+    mrb_value ret = mrb_load_file(mrb, f);
     fclose(f);
-    mrb_run(mrb, mrb_proc_new(mrb, mrb->irep[n]), mrb_nil_value());
 }
 
 -(void) dealloc

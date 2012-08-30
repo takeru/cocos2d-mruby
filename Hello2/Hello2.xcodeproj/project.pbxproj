@@ -500,6 +500,8 @@
 		007E7A9B1545D8E7002DC9A7 /* range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = range.h; sourceTree = "<group>"; };
 		007E7A9C1545D8E7002DC9A7 /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = string.h; sourceTree = "<group>"; };
 		007E7A9D1545D8E7002DC9A7 /* struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = struct.h; sourceTree = "<group>"; };
+		0082C6E915ED3D6D004D8E72 /* compile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compile.h; sourceTree = "<group>"; };
+		0082C6EA15ED3D6D004D8E72 /* value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = value.h; sourceTree = "<group>"; };
 		00852DC31571F75A0023D4FD /* math.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = math.c; sourceTree = "<group>"; };
 		009CA57B1552E0A700B3FC9A /* MrbLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MrbLayer.h; sourceTree = "<group>"; };
 		009CA57C1552E0A700B3FC9A /* MrbLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MrbLayer.m; sourceTree = "<group>"; };
@@ -934,6 +936,8 @@
 		007E79BA15443F55002DC9A7 /* mruby */ = {
 			isa = PBXGroup;
 			children = (
+				0082C6E915ED3D6D004D8E72 /* compile.h */,
+				0082C6EA15ED3D6D004D8E72 /* value.h */,
 				007E7A941545D8E7002DC9A7 /* array.h */,
 				006894B5154D5B31006E32CC /* cdump.h */,
 				007E7A951545D8E7002DC9A7 /* class.h */,
