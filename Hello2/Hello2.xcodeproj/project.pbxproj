@@ -177,6 +177,7 @@
 		007E7A891545CC81002DC9A7 /* y.tab.c in Sources */ = {isa = PBXBuildFile; fileRef = 007E7A881545CC81002DC9A7 /* y.tab.c */; };
 		00852DC41571F75A0023D4FD /* math.c in Sources */ = {isa = PBXBuildFile; fileRef = 00852DC31571F75A0023D4FD /* math.c */; };
 		009CA57D1552E0A700B3FC9A /* MrbLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 009CA57C1552E0A700B3FC9A /* MrbLayer.m */; };
+		00A620DC15F1FC2E0084AB8B /* NSObjectContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A620DB15F1FC2E0084AB8B /* NSObjectContainer.m */; };
 		00D42462155AE7CE00656363 /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = 00D42461155AE7CE00656363 /* time.c */; };
 /* End PBXBuildFile section */
 
@@ -505,6 +506,8 @@
 		00852DC31571F75A0023D4FD /* math.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = math.c; sourceTree = "<group>"; };
 		009CA57B1552E0A700B3FC9A /* MrbLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MrbLayer.h; sourceTree = "<group>"; };
 		009CA57C1552E0A700B3FC9A /* MrbLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MrbLayer.m; sourceTree = "<group>"; };
+		00A620DB15F1FC2E0084AB8B /* NSObjectContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSObjectContainer.m; sourceTree = "<group>"; };
+		00A620DD15F207F40084AB8B /* NSObjectContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObjectContainer.h; sourceTree = "<group>"; };
 		00D42461155AE7CE00656363 /* time.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = time.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -562,6 +565,7 @@
 		007E76A615443A73002DC9A7 /* Hello2 */ = {
 			isa = PBXGroup;
 			children = (
+				00A620D915F1FB8D0084AB8B /* cocos2dmruby */,
 				007E79AE15443F55002DC9A7 /* mruby */,
 				002C6669154D82C800C2159E /* Cocos2dMrb.h */,
 				002C666A154D82C800C2159E /* Cocos2dMrb.m */,
@@ -1034,6 +1038,15 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		00A620D915F1FB8D0084AB8B /* cocos2dmruby */ = {
+			isa = PBXGroup;
+			children = (
+				00A620DB15F1FC2E0084AB8B /* NSObjectContainer.m */,
+				00A620DD15F207F40084AB8B /* NSObjectContainer.h */,
+			);
+			name = cocos2dmruby;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1257,6 +1270,7 @@
 				0020A75015568E5C000B9D8C /* MrbSprite.m in Sources */,
 				00D42462155AE7CE00656363 /* time.c in Sources */,
 				00852DC41571F75A0023D4FD /* math.c in Sources */,
+				00A620DC15F1FC2E0084AB8B /* NSObjectContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
